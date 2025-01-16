@@ -1,9 +1,9 @@
-import Boimela from "./Boimela";
+import CarZone from "./CarZone";
 
 function App() {
   return (
     <>
-      <Boimela />
+      <CarZone />
     </>
   );
 }

@@ -3,7 +3,7 @@
 function Search() {
   return (
     <div>
-      <input type="text" placeholder="Search Book" className="border mb-4  rounded-md p-1 w-full" />
+      <input type="text" placeholder="Search Car" className="border rounded-md p-1 w-80" />
     </div>
   )
 }
