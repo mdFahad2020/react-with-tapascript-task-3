@@ -1,12 +1,22 @@
+import PropTypes from "prop-types";
 
-
-function Filter() {
+function Filter({ showPrimium, onShowPrimium }) {
+  console.log(showPrimium);
   return (
-    <div className="flex items-center gap-2">
-      <input type="checkbox" />
-      <p className="font-semibold text-sm">Show Primium only</p>
-    </div>
-  )
+    <form className="flex items-center gap-2">
+      <input
+        type="checkbox"
+        checked={showPrimium}
+        onChange={(e) => onShowPrimium(e.target.checked)}
+      />
+      <label className="font-semibold text-sm">Show Primium only</label>
+    </form>
+  );
 }
 
-export default Filter
+Filter.propTypes = {
+  showPrimium: PropTypes.bool.isRequired,
+  onShowPrimium: PropTypes.func.isRequired,
+};
+
+export default Filter;

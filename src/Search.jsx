@@ -1,11 +1,22 @@
+import PropTypes from "prop-types";
 
-
-function Search() {
+function Search({ searchTerm, onSearchTerm }) {
   return (
-    <div>
-      <input type="text" placeholder="Search Car" className="border rounded-md p-1 w-80" />
-    </div>
-  )
+    <form>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => onSearchTerm(e.target.value)}
+        placeholder="Search Car"
+        className="border rounded-md p-1 w-80"
+      />
+    </form>
+  );
 }
 
-export default Search
+Search.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearchTerm: PropTypes.func.isRequired,
+};
+
+export default Search;

@@ -1,25 +1,28 @@
-import CarCard from "./CarCard"
+import PropTypes from "prop-types";
+import CarCard from "./CarCard";
 
-const CARS = [   
-    { id: 1, title: "Luxury Sedan", brand: "Mercedes", year: 2023, price: 80000, isPremium: true },
-    { id: 2, title: "Family SUV", brand: "Toyota", year: 2022, price: 45000, isPremium: false },
-    { id: 3, title: "Sports Car", brand: "Porsche", year: 2023, price: 120000, isPremium: true },
-    { id: 4, title: "Electric Hatchback", brand: "Nissan", year: 2022, price: 35000, isPremium: false },
-    { id: 5, title: "Luxury SUV", brand: "BMW", year: 2023, price: 90000, isPremium: true },
-  ]
+function CarList({ cars, searchTerm, showPrimium }) {
+  const rows = [];
 
-function CarList() {
-  return (
-    <ul className="grid grid-cols-3 gap-3">
-        {
-            CARS.map((car) => (
-                <li key={car.id}>
-                    <CarCard car={car} />
-                </li>
-            ))
-        }
-    </ul>
-  )
+  cars.forEach((car) => {
+    if (
+      car.title.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1 ||
+      (showPrimium && !car.isPremium)
+    ) {
+      return;
+    }
+
+    rows.push(<CarCard key={car.id} car={car} />);
+  });
+  console.log(rows);
+
+  return <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">{rows}</div>;
 }
 
-export default CarList
+CarList.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  cars: PropTypes.array.isRequired,
+  showPrimium: PropTypes.bool.isRequired,
+};
+
+export default CarList;
